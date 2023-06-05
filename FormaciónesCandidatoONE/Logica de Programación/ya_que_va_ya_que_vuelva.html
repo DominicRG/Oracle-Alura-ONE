@@ -1,0 +1,74 @@
+<canvas width="600" height="400"> </canvas>
+
+<script>
+    
+    let id;
+    let id2;
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(0, 0, 600, 400);
+
+    function disenharCircunferencia(x, y, radio) {
+        pincel.fillStyle = "blue";
+        pincel.beginPath();
+        pincel.arc(x, y, radio, 0, 2 * Math.PI);
+        pincel.fill();
+    }
+
+    function limpiarPantalla() {
+
+        pincel.clearRect(0, 0, 600, 400);
+
+    }
+
+    var x = 0;
+    function actualizarPantallaRigth() {
+
+        limpiarPantalla();
+        disenharCircunferencia(x, 20, 10);
+        x++;
+        if (x > 600) {
+            detenerInterDerecho();
+            x=0;
+            intervalorIzquierdo();
+        }
+    }
+
+    var x2 = 600;
+    function actualizarPantallaLeft() {
+        limpiarPantalla();
+        disenharCircunferencia(x2, 20, 10);
+        x2--;
+        if (x2 < 0) {
+            detenerInterIzquierdo();
+            x2=600;
+            intervalorDerecho();
+        }
+    }
+
+    function intervalorDerecho() {
+        if (!id) {
+            id = setInterval(actualizarPantallaRigth, 5);
+        }
+    }
+
+    function detenerInterDerecho(){
+        clearInterval(id);
+        id =  null;
+    }
+
+    function intervalorIzquierdo() {
+        if (!id2) {
+            id2 = setInterval(actualizarPantallaLeft, 5);
+        }
+    }
+
+    function detenerInterIzquierdo(){
+        clearInterval(id2);
+        id2 =  null;
+    }
+
+    intervalorDerecho();
+
+</script>

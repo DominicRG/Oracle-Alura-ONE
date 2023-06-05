@@ -1,0 +1,45 @@
+<meta charset="UTF-8" />
+
+<h1>PROGRAMA JUEGO DE ADIVINACION</h1>
+
+<script>
+  function saltarLinea() {
+    document.write("<br>");
+    document.write("<br>");
+    document.write("<br>");
+  }
+
+  function imprimir(frase) {
+    document.write(frase);
+    saltarLinea();
+  }
+
+  function sorteo(n) {
+    var num = Math.round(Math.random() * n);
+    return num;
+  }
+
+  var intentos = 5;
+  alert("¡Encuentra el número! -- Tienes " + intentos + " intentos.");
+  var n = parseInt(prompt("Ingrese el número maximo a encontrar(empieza desde 0)"));
+  var numeroPensado = sorteo(n);
+  var numeroLanzado = 0;
+
+
+  while (intentos <= 5 && numeroLanzado != numeroPensado) {
+    numeroLanzado = parseInt(prompt("Ingrese un número entre 0-" + n));
+    intentos--;
+    if (numeroLanzado > numeroPensado) {
+      alert("usted erró, el número pensado es menor que tu número, te quedan " + intentos + " intentos");
+    }
+    if (numeroLanzado < numeroPensado) {
+      alert("usted erró, el número pensado es mayor que tu número, te quedan " + intentos + " intentos");
+    }
+  }
+
+  if (intentos > 5) {
+    imprimir("Upps te quedaste sin intentos...!");
+  }
+
+  imprimir("Usted acerto!!!, en efecto el número era: " + numeroPensado);
+</script>
